@@ -56,3 +56,33 @@ function displayPokemons(pokemon) {
     listWrapper.appendChild(listItem);
   });
 }
+
+//Search pokemons
+
+searchInput.addEventListener("keyup", handleSearch);
+
+function handleSearch() {
+  const searchTerm = searchInput.value.toLowerCase();
+  let filteredPokemons;
+
+  if (numberFilter.checked) {
+    filteredPokemons = allPokemons.filter((pokemon) => {
+      const pokemonId = pokemon.url.split("/")[6];
+      return pokemonId.startsWith(searchTerm);
+    });
+  } else if (nameFilter.checked) {
+    filteredPokemons = allPokemons.filter((pokemon) =>
+      pokemon.name.toLowerCase().startsWith(searchTerm)
+    );
+  } else {
+    filteredPokemons = allPokemons;
+  }
+
+  displayPokemons(filteredPokemons);
+
+  if (filteredPokemons.length === 0) {
+    notFoundMessage.style.display = "block";
+  } else {
+    notFoundMessage.style.display = "none";
+  }
+}
