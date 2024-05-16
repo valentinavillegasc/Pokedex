@@ -17,10 +17,10 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
 async function fetchPokemonDataBeforeRedirect(id) {
   try {
     const [pokemon, pokemonSpecies] = await Promise.all([
-      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then.apply((response) =>
+      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((response) =>
         response.json()
       ),
-      fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then.apply(
+      fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then(
         (response) => response.json()
       ),
     ]);
